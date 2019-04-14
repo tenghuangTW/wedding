@@ -1,0 +1,378 @@
+@import "_code";
+$portrait: (max-width 1023px) (orientation portrait);
+.container {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	@include breakpoint(576px) {
+		max-width: 540px;
+	};
+	@include breakpoint(768px) {
+		max-width: 720px;
+	};
+	@include breakpoint(992px) {
+		max-width: 960px;
+	};
+	@include breakpoint(1200px) {
+		max-width: 1140px;
+	};
+}
+.container-fluid {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.row {
+	@extend %flex-wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+.flex {
+	@extend %flex-wrap;
+}
+$ham: 20px;
+nav {
+	@include breakpoint(768px) {
+		display: none;
+	}
+	.row {
+		justify-content: space-between;
+	}
+	.hamburger {
+		position: fixed;
+		top: 0;
+		left: 0;
+		padding: 16px 30px;
+		z-index: 2;
+		@include breakpoint(768px) {
+			padding: 16px 15px;
+		}
+		&:hover {
+			cursor: pointer;
+		}
+		span {
+			width: $ham;
+			height: 2px;
+			background-color: $dark;
+			display: block;
+			margin: 3px auto;
+			@include transition(all 0.3s ease-in-out);
+		}
+		&.active{
+			@include transition(all 0.3s ease-in-out);
+			@include transition-delay(0.6s);
+			@include rotate(45deg);
+			span {
+				&:nth-child(2) {
+					width: 0px;
+				}
+				&:nth-child(1), &:nth-child(3) {
+					@include transition-delay(0.3s);
+				}
+				&:nth-child(1){
+					@include translateY($ham/4);
+				}
+				&:nth-child(3){
+					@include transform(translateY(-$ham/4) rotate(90deg));
+				}
+			}
+		}
+	}
+	ul {
+		display: none;
+		position: fixed;
+		@extend %list-reset;
+		@extend %flex-wrap;
+		align-items: center;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		@include breakpoint(max-width 767px) {
+			padding: 50px 15px 15px;
+			align-content: flex-start;
+			background-color: rgba($white, 0.95);
+		}
+		@include breakpoint(768px) {
+			padding: 0 15px;
+		}
+		li {
+			@include breakpoint(max-width 767px) {
+				width: 100%;
+			}
+			a {
+				display: block;
+				padding: 10px;
+				color: $dark;
+				&:hover {
+					color: $second;
+				}
+			}
+		}
+	}
+}
+header {
+	height: 100vh;
+	background-image: url('../img/background.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	@include background-size(cover);
+	> .container-fluid{
+		height: 100%;
+		> .flex {
+			padding-top: 50px;
+			padding-bottom: 50px;
+			height: 100%;
+		}
+	}
+	.container {
+		position: relative;
+		height: 100%;
+		background-color: rgba($white, 0.8);
+		background-image: url('../img/flora_mobile@3x.png');
+		background-position: center center;
+		background-repeat: no-repeat;
+		@include background-size(cover);
+		@include box-shadow(0 0 15px rgba($dark, 0.15));
+		@include breakpoint (768px) {
+			background-image: url('../img/flora_pad@2x.png');
+		}
+		@include breakpoint (1024px) {
+			background-image: url('../img/flora.png');
+		}
+		.flex {
+			height: 100%;
+			justify-content: center;
+			align-items: center;
+		}
+		h1 {
+			padding-top: 4rem;
+			img {
+				height: auto;
+				max-width: calc(100% + 50px);
+				margin: 0 -25px;
+				@include breakpoint (768px) {
+					max-width: 100%;
+					margin: 0;
+				}
+			}
+		}
+		$colorBg: #f9f8f6;
+		$colorOutline: #AE7B20;
+		$colorOutlineFade: #F0D77C;
+		$widthMouse: 20px;
+		$heightMouse: 32px;
+		$borderMouse: 4px;
+		$posMouse: 4px;
+		$posText: 2px;
+		$sizeTrackball: 4px;
+		$posTrackball: 10px;
+		$shrinkTrackball: 0.4;
+		$animDuration: 10s;
+		@mixin bgGradient {
+			background: $colorOutlineFade
+			linear-gradient(
+				transparent 0%,
+				transparent 50%,
+				$colorOutline 50%,
+				$colorOutline 100%
+			);
+		}
+		.mouse {
+			position: absolute;
+			bottom: 30px;
+			width: $widthMouse;
+			height: $heightMouse;
+			border-radius: 100px;
+			@include bgGradient;
+			@include animation(colorSlide $animDuration linear infinite, nudgeMouse $animDuration ease-out infinite);
+			@include background-size(100% 200%);
+			&:before, &:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto;
+			}
+			&:before {
+				width: $widthMouse - $borderMouse;
+				height: $heightMouse - $borderMouse;
+				background-color: $colorBg;
+				border-radius: 100px;
+			}
+			&:after {
+				background-color: $colorOutline;
+				width: $sizeTrackball;
+				height: $sizeTrackball;
+				border-radius: 100%;
+				animation: trackBallSlide $animDuration linear infinite;
+			}
+		}
+		@keyframes colorSlide { 
+			0% { background-position: 0% 100%; }
+			20% { background-position: 0% 0%; }
+			21% { background-color: $colorOutlineFade; }
+			29.99% { 
+				background-color: $colorOutline;
+				background-position: 0% 0%;
+			}
+			30% { 
+				background-color: $colorOutlineFade;
+				background-position: 0% 100%;
+			}
+			50% { background-position: 0% 0%; }
+			51% { background-color: $colorOutlineFade; }
+			59% { 
+				background-color: $colorOutline;
+				background-position: 0% 0%;
+			}
+			60% { 
+				background-color: $colorOutlineFade;
+				background-position: 0% 100%;
+			}
+			80% { background-position: 0% 0%; }
+			81% { background-color: $colorOutlineFade; }
+			90%, 100% { background-color: $colorOutline; }
+		}
+		@keyframes trackBallSlide {
+			0% {
+				opacity: 1;
+				transform: scale(1) translateY(-$posTrackball);
+			}
+			6% { 
+				opacity: 1;
+				transform: scale(0.9) translateY($posTrackball/4);
+			}
+			14% {
+				opacity: 0;
+				transform: scale($shrinkTrackball) translateY($posTrackball*2);
+			}
+			15%, 19% {
+				opacity: 0;
+				transform: scale($shrinkTrackball) translateY(-$posTrackball);
+			}
+			28%, 29.99% {
+				opacity: 1;
+				transform: scale(1) translateY(-$posTrackball);
+			}
+			30% {
+				opacity: 1;
+				transform: scale(1) translateY(-$posTrackball);
+			}
+			36% { 
+				opacity: 1;
+				transform: scale(0.9) translateY($posTrackball/4);
+			}
+			44% {
+				opacity: 0;
+				transform: scale($shrinkTrackball) translateY($posTrackball*2);
+			}
+			45%, 49% {
+				opacity: 0;
+				transform: scale($shrinkTrackball) translateY(-$posTrackball);
+			}
+			58%, 59.99% {
+				opacity: 1;
+				transform: scale(1) translateY(-$posTrackball);
+			}
+			60% {
+				opacity: 1;
+				transform: scale(1) translateY(-$posTrackball);
+			}
+			66% { 
+				opacity: 1;
+				transform: scale(0.9) translateY($posTrackball/4);
+			}
+			74% {
+				opacity: 0;
+				transform: scale($shrinkTrackball) translateY($posTrackball*2);
+			}
+			75%, 79% {
+				opacity: 0;
+				transform: scale($shrinkTrackball) translateY(-$posTrackball);
+			}
+			88%, 100% {
+				opacity: 1;
+				transform: scale(1) translateY(-$posTrackball);
+			}
+		}
+		@keyframes nudgeMouse {
+			0% { transform: translateY(0); }
+			20% { transform: translateY($posMouse); }
+			30% { transform: translateY(0); }
+			50% { transform: translateY($posMouse); }
+			60% { transform: translateY(0); }
+			80% { transform: translateY($posMouse); }
+			90% { transform: translateY(0); }
+		}
+	}
+}
+section {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	&:nth-child(odd) {
+		background-color: #fafafa;
+	}
+	&:nth-child(even) {
+		background-color: #f5f5f5;
+	}
+	@include breakpoint(768px) {
+		padding-top: 100px;
+		padding-bottom: 100px;
+	}
+	h2 {
+		position: relative;
+		width: 100%;
+		font-size: 0;
+		font-family: liana, script;
+		line-height: 1.75;
+		text-align: center;
+		span {
+			&.ch {
+				position: relative;
+				display: table;
+				margin: auto;
+				color: $dark;
+				font-size: 48px;
+				font-weight: 100;
+				@include breakpoint(768px) {
+					font-size: 60px;
+				}
+				@include breakpoint(1024px) {
+					font-size: 72px;
+				}
+			}
+			&.en {
+				position: absolute;
+				display: block;
+				top: 50%;
+				left: 50%;
+				width: 100%;
+				padding: 0 5px;
+				font-size: 36px;
+				font-style: italic;
+				font-weight: bold;
+				color: transparent !important;
+				background-repeat: no-repeat;
+				@include background-clip(text);
+				@include background-size(cover);
+				background-image: url('../img/goldenBG@2x.png');
+				@include translate(-50%, -50%);
+				z-index: 1;
+				@include breakpoint(768px) {
+					font-size: 48px;
+				}
+				@include breakpoint(1024px) {
+					font-size: 60px;
+				}
+			}
+		}
+	}
+}

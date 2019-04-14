@@ -1,0 +1,113 @@
+// 共同設定
+@import "normalize";
+@import "Compass";
+@import "breakpoint";
+$white: #fff;
+$dark: #131313;
+$main: #D7B788;
+$second: #895A36;
+$tiffany: #0bb6b2;
+%displayNone {
+	display: none;
+}
+%list-reset {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+%before-after {
+	content: '';
+	display: block;
+}
+%before-after-clear {
+	@extend %before-after;
+	clear: both;
+}
+%inline-align {
+	display: inline-block;
+	vertical-align: middle;
+}
+%flex {
+	display: flex;
+}
+%flex-content-center {
+	@extend %flex;
+	align-content: center;
+}
+%flex-items-center {
+	@extend %flex;
+	align-items: center;
+}
+%flex-between {
+	justify-content: space-between;
+}
+%flex-wrap {
+	@extend %flex;
+	flex-wrap: wrap;
+}
+%absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include translate(-50%, -50%);
+}
+%btn {
+	text-align: center;
+	transition: all .5s;
+}
+@mixin btn($color, $default, $colorHover, $hover, $height, $paddingLeft, $paddingRight) {
+	@extend %btn;
+	padding-left: $paddingLeft;
+	padding-right: $paddingRight;
+	height: $height;
+	color: $color;
+	line-height: $height;
+	background-color: $default;
+	&:hover {
+		@include breakpoint(1024px) {
+			color: $colorHover;
+			background-color: $hover;
+		};
+	}
+}
+@mixin textBtn($color, $hover) {
+	color: $color;
+	&:hover {
+		color: $hover;
+	}
+}
+@mixin radialGradient($color1, $position1, $color2, $position2) {
+	background-color: $color1;
+	@include filter-gradient($color1, $color2, horizontal);
+	@include background-image(radial-gradient(center, ellipse cover, $color1 $position1, $color2 $position2));
+}
+.sr-only {
+	position: absolute!important;
+	padding: 0!important;
+	margin: 0!important;
+	width: 0!important;
+	height: 0!important;
+	font-size: 0!important;
+}
+*, *::before, *::after {
+	@include box-sizing(border-box);
+}
+@import url('https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:300,400,500,700|Noto+Sans+TC:300,400,500,700|Noto+Serif+TC:300,400,500,700|Roboto:300,400,500,700&subset=chinese-traditional');
+body {
+	font-family: Roboto, 'Noto Sans TC', sans-serif;
+	font-weight: 300;
+	line-height: 1.5;
+	letter-spacing: 0.025em;
+}
+.serif {
+	font-family: 'Frank Ruhl Libre', 'Noto Serif TC', serif;
+}
+a {
+	text-decoration: none;
+	@include breakpoint(1024px) {
+		transition: .5s;
+	};
+}
+img {
+	display: block;
+}

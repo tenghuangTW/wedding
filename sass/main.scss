@@ -1,40 +1,13 @@
 @import "_code";
 $portrait: (max-width 1023px) (orientation portrait);
-.container {
-	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
-	@include breakpoint(576px) {
-		max-width: 540px;
-	};
-	@include breakpoint(768px) {
-		max-width: 720px;
-	};
-	@include breakpoint(992px) {
-		max-width: 960px;
-	};
-	@include breakpoint(1200px) {
-		max-width: 1140px;
-	};
-}
-.container-fluid {
-	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
-}
-.row {
-	@extend %flex-wrap;
-	margin-right: -15px;
-	margin-left: -15px;
-}
 .flex {
 	@extend %flex-wrap;
 }
 $ham: 20px;
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
 nav {
 	@include breakpoint(768px) {
 		display: none;
@@ -115,7 +88,9 @@ nav {
 		}
 	}
 }
-header {
+header.jumbotron {
+	margin: 0;
+	padding: 0;
 	height: 100vh;
 	background-image: url('../img/background.png');
 	background-position: center center;
@@ -315,17 +290,11 @@ header {
 	}
 }
 section {
-	padding-top: 50px;
-	padding-bottom: 50px;
 	&:nth-child(odd) {
 		background-color: #fafafa;
 	}
 	&:nth-child(even) {
 		background-color: #f5f5f5;
-	}
-	@include breakpoint(768px) {
-		padding-top: 100px;
-		padding-bottom: 100px;
 	}
 	h2 {
 		position: relative;
@@ -374,5 +343,196 @@ section {
 				}
 			}
 		}
+	}
+	&.newlywed {
+		.background {
+			position: relative;
+			height: 100vh;
+			@include animation(couple 5s forwards cubic-bezier(0.4, 0, 1, 1));
+			&::before, &::after {
+				@extend %before-after;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100vh;
+				@include background-size(cover);
+				background-position: bottom center;
+				@include breakpoint(768px) {
+					background-attachment: fixed;
+					background-position: center center;
+				}
+			}
+			&::before {
+				background-image: url("../img/2-couple-dark@3x.jpg");
+				@include animation(bifade 10s alternate infinite ease-in-out);
+				z-index: 1;
+				@include breakpoint(768px) {
+					background-image: url("../img/couple.jpg");
+				}
+			}
+			&::after {
+				background-image: url("../img/2-couple-light@3x.jpg");
+				z-index: 0;
+				@include breakpoint(768px) {
+					background-image: url("../img/couple-2.jpg");
+				}
+			}
+		}
+		.row {
+			@include breakpoint(768px) {
+				height: 100%;
+			}
+		}
+		.text {
+			position: relative;
+			z-index: 1;
+			@include breakpoint(max-width 767px) {
+				padding-top: 75px;
+			}
+			&::before {
+				@extend %before-after;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				height: 0;
+				@include animation(bcolor 10s alternate infinite ease-in-out);
+				@include transition(background-image 1s ease-in-out);
+				@include translate(-50%, -50%);
+				z-index: -1;
+				@include breakpoint(768px) {
+					width: 105%;
+					padding-top: 105%;
+				}
+			}
+			img {
+				margin: auto;
+			}
+			h4 {
+				margin-top: 1em;
+				color: $dark;
+				font-weight: 200;
+				@include breakpoint(768px) {
+					color: $white;
+				}
+			}
+		}
+	}
+	&.gallery {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		@include breakpoint(768px) {
+			padding-top: 100px;
+			padding-bottom: 100px;
+		}
+		.lightgallery {
+			font-size: 0;
+			@include column-count(5);
+			a {
+				display: initial;
+				padding: 5px;
+				img {
+					margin: 5px;
+					width: calc(100% - 10px);
+					height: auto;
+				}
+			}
+		}
+	}
+	&.map {
+		.text {
+			display: flex;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			justify-content: flex-end;
+			.row {
+				@include breakpoint(768px) {
+					padding-right: 50px;
+				}
+			}
+			h4 {
+				color: transparent !important;
+				background-repeat: no-repeat;
+				@include background-clip(text);
+				@include background-size(cover);
+				background-image: url('../img/goldenBG@2x.png');
+			}
+			h4, h5 {
+				margin: 0.5em 0 0.25em;
+				> span, i {
+					font-weight: 200;
+					font-style: normal;
+				}
+				> span {
+					padding-left: 1em;
+					font-size: 0.7em;
+				}
+			}
+			.col-12 {
+				+ .col-12 {
+					margin-top: 1.5rem;
+				}
+			}
+			ul {
+				li {
+					margin-bottom: 0.5em;
+				}
+				&.road {
+					@extend %list-reset;
+					@extend %flex-wrap;
+					li {
+						padding-right: 0.25em;
+						+ li {
+							&::before {
+								content: '➔';
+								display: inline-block;
+								padding-right: 0.25em;
+							}
+						}
+					}
+				}
+			}
+		}
+		.gmap {
+			.row {
+				height: 100%;
+			}
+			iframe {
+				height: 100%;
+				min-height: 400px;
+			}
+		}
+	}
+}
+footer {
+	font-size: 12px;
+	text-align: right;
+}
+@include keyframes(bifade) {
+	0% {
+		opacity:1;
+	}
+	45% {
+		opacity:1;
+	}
+	55% {
+		opacity:0;
+	}
+	100% {
+		opacity:0;
+	}
+}
+@include keyframes(bcolor) {
+	0% {
+		@include background-image(radial-gradient(center, ellipse cover, rgba(0,0,0,0.75) 0%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%));
+	}
+	45% {
+		@include background-image(radial-gradient(center, ellipse cover, rgba(0,0,0,0.75) 0%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%));
+	}
+	55% {
+		@include background-image(radial-gradient(center, ellipse cover, rgba(136, 98, 30,0.75) 0%,rgba(136, 98, 30,0) 70%,rgba(0,0,0,0) 100%));
+	}
+	100% {
+		@include background-image(radial-gradient(center, ellipse cover, rgba(136, 98, 30,0.75) 0%,rgba(136, 98, 30,0) 70%,rgba(0,0,0,0) 100%));
 	}
 }

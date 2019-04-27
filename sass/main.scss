@@ -8,6 +8,13 @@ h1, h2, h3, h4, h5, h6, p {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+%golden-text {
+	color: transparent !important;
+	background-repeat: no-repeat;
+	@include background-clip(text);
+	@include background-size(cover);
+	background-image: url('../img/goldenBG@2x.png');
+}
 nav {
 	@include breakpoint(768px) {
 		display: none;
@@ -294,54 +301,18 @@ section {
 		background-color: #fafafa;
 	}
 	&:nth-child(even) {
-		background-color: #f5f5f5;
+		background-color: $dark;
 	}
-	h2 {
+	.title {
 		position: relative;
-		width: 100%;
-		font-size: 0;
-		font-family: liana, script;
-		line-height: 1.75;
-		text-align: center;
-		span {
-			&.ch {
-				position: relative;
-				display: table;
-				margin: auto;
-				color: $dark;
-				font-size: 48px;
-				font-weight: 100;
-				@include breakpoint(768px) {
-					font-size: 60px;
-				}
-				@include breakpoint(1024px) {
-					font-size: 72px;
-				}
-			}
-			&.en {
-				position: absolute;
-				display: block;
-				top: 50%;
-				left: 50%;
-				width: 100%;
-				padding: 0 5px;
-				font-size: 36px;
-				font-style: italic;
-				font-weight: bold;
-				color: transparent !important;
-				background-repeat: no-repeat;
-				@include background-clip(text);
-				@include background-size(cover);
-				background-image: url('../img/goldenBG@2x.png');
-				@include translate(-50%, -50%);
-				z-index: 1;
-				@include breakpoint(768px) {
-					font-size: 48px;
-				}
-				@include breakpoint(1024px) {
-					font-size: 60px;
-				}
-			}
+		h2 {
+			position: absolute;
+			margin: 0;
+			font-size: 48px;
+			line-height: 1;
+			writing-mode: vertical-rl;
+			-webkit-writing-mode: vertical-rl;
+			@extend %golden-text;
 		}
 	}
 	&.newlywed {
@@ -365,7 +336,7 @@ section {
 			}
 			&::before {
 				background-image: url("../img/2-couple-dark@3x.jpg");
-				@include animation(bifade 10s alternate infinite ease-in-out);
+				@include animation(bifade 5s alternate infinite ease-in-out);
 				z-index: 1;
 				@include breakpoint(768px) {
 					background-image: url("../img/couple.jpg");
@@ -418,6 +389,145 @@ section {
 			}
 		}
 	}
+	&.bigday {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		@include breakpoint(768px) {
+			padding-top: 100px;
+			padding-bottom: 100px;
+		}
+		.date-time {
+			text-align: center;
+			span {
+				// display: block;
+				color: #aaa;
+				font-size: 18px;
+				line-height: 1;
+				&[class*='row'] {
+					display: inline-flex;
+					justify-content: center;
+					align-items: baseline;
+				}
+				&.note {
+					display: block;
+					margin-top: 0.5rem;
+					font-size: 1rem;
+				}
+				&.number {
+					color: $main;
+					font-size: 96px;
+					font-weight: 300;
+				}
+				i {
+					display: block;
+					align-self: center;
+					width: 2em;
+					padding: 5px;
+					font-style: normal;
+					line-height: 1.35;
+					word-break: break-all;
+				}
+			}
+		}
+		.pre-text {
+			margin-top: 100px;
+			margin-bottom: 25px;
+			color: #ccc;
+			font-size: 18px;
+			letter-spacing: 0.1em;
+		}
+		ul.timer {
+			@extend %list-reset;
+			justify-content: center;
+			line-height: 1;
+			li {
+				position: relative;
+				padding: 0 30px;
+				color: #aaa;
+				font-size: 14px;
+				text-align: center;
+				text-transform: uppercase;
+				span {
+					display: block;
+					color: $main;
+					font-size: 96px;
+					font-weight: 300;
+				}
+				+ li {
+					&::before {
+						content: ':';
+						position: absolute;
+						top: -13px;
+						left: -10px;
+						color: $main;
+						font-family: sans-serif;
+						font-size: 96px;
+						font-weight: 100;
+						line-height: 1;
+					}
+				}
+			}
+		}
+	}
+	&.story {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		@include breakpoint(768px) {
+			padding-top: 100px;
+			padding-bottom: 100px;
+		}
+		ul {
+			position: relative;
+			padding: 0;
+			margin: 0;
+			&::before {
+				@extend %before-after;
+				position: absolute;
+				top: 0px;
+				left: 115px;
+				width: 1px;
+				height: 100%;
+				background-color: $main;
+			}
+			li {
+				position: relative;
+				padding-left: 145px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				font-size: 18px;
+				&::before {
+					@extend %before-after;
+					position: absolute;
+					top: 20px;
+					left: 111.5px;
+					width: 8px;
+					height: 8px;
+					background-color: $second;
+					@include border-radius(50%);
+				}
+				&.txt-full {
+					padding: 10px 30px;
+					margin-top: 20px;
+					margin-bottom: 20px;
+					text-align: center;
+					border-top: 1px solid $main;
+					border-bottom: 1px solid $main;
+					background-color: #fafafa;
+					&::before {
+						display: none;
+					}
+				}
+			}
+		}
+		.day {
+			position: absolute;
+			left: 0px;
+			font-weight: 200;
+		}
+		.txt {
+			font-weight: 400;
+		}
+	}
 	&.gallery {
 		padding-top: 50px;
 		padding-bottom: 50px;
@@ -427,7 +537,7 @@ section {
 		}
 		.lightgallery {
 			font-size: 0;
-			@include column-count(5);
+			@include column-count(3);
 			a {
 				display: initial;
 				padding: 5px;
@@ -451,11 +561,8 @@ section {
 				}
 			}
 			h4 {
-				color: transparent !important;
-				background-repeat: no-repeat;
-				@include background-clip(text);
-				@include background-size(cover);
-				background-image: url('../img/goldenBG@2x.png');
+				@extend %golden-text;
+				font-weight: 600;
 			}
 			h4, h5 {
 				margin: 0.5em 0 0.25em;

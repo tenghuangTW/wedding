@@ -3,7 +3,7 @@
 @import "Compass";
 @import "breakpoint";
 $white: #fff;
-$dark: #131313;
+$dark: #031f23;
 $main: #D7B788;
 $second: #895A36;
 $tiffany: #0bb6b2;
@@ -92,7 +92,7 @@ $tiffany: #0bb6b2;
 *, *::before, *::after {
 	@include box-sizing(border-box);
 }
-@import url('https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:300,400,500,700|Noto+Sans+TC:300,400,500,700|Noto+Serif+TC:300,400,500,700|Roboto:300,400,500,700&subset=chinese-traditional');
+@import url('https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:300,400,500,700|Noto+Sans+TC:100,300,400,500,700|Noto+Serif+TC:200,300,400,500,600,700|Roboto:100,300,400,500,700&subset=chinese-traditional');
 body {
 	font-family: Roboto, 'Noto Sans TC', sans-serif;
 	font-weight: 300;

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 /*! normalize.css v3.0.0 | HTML5 Display Definitions | MIT License | git.io/normalize */
-@import url("https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:300,400,500,700|Noto+Sans+TC:300,400,500,700|Noto+Serif+TC:300,400,500,700|Roboto:300,400,500,700&subset=chinese-traditional");
+@import url("https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:300,400,500,700|Noto+Sans+TC:100,300,400,500,700|Noto+Serif+TC:200,300,400,500,600,700|Roboto:100,300,400,500,700&subset=chinese-traditional");
 article,
 aside,
 details,
@@ -228,13 +228,13 @@ th {
   padding: 0;
 }
 
-nav ul, section.map .text ul.road {
+nav ul, section.bigday ul.timer, section.map .text ul.road {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-section.newlywed .background::before, section.newlywed .background::after, section.newlywed .text::before {
+section.newlywed .background::before, section.newlywed .background::after, section.newlywed .text::before, section.story ul::before, section.story ul li::before {
   content: '';
   display: block;
 }
@@ -291,6 +291,20 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 1em;
 }
 
+section .title h2, section.map .text h4 {
+  color: transparent !important;
+  background-repeat: no-repeat;
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-image: url("../img/goldenBG@2x.png");
+}
+
 @media (min-width: 768px) {
   nav {
     display: none;
@@ -317,7 +331,7 @@ nav .hamburger:hover {
 nav .hamburger span {
   width: 20px;
   height: 2px;
-  background-color: #131313;
+  background-color: #031f23;
   display: block;
   margin: 3px auto;
   -moz-transition: all 0.3s ease-in-out;
@@ -389,7 +403,7 @@ nav ul {
 nav ul li a {
   display: block;
   padding: 10px;
-  color: #131313;
+  color: #031f23;
 }
 nav ul li a:hover {
   color: #895A36;
@@ -427,9 +441,9 @@ header.jumbotron .container {
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover;
-  -moz-box-shadow: 0 0 15px rgba(19, 19, 19, 0.15);
-  -webkit-box-shadow: 0 0 15px rgba(19, 19, 19, 0.15);
-  box-shadow: 0 0 15px rgba(19, 19, 19, 0.15);
+  -moz-box-shadow: 0 0 15px rgba(3, 31, 35, 0.15);
+  -webkit-box-shadow: 0 0 15px rgba(3, 31, 35, 0.15);
+  box-shadow: 0 0 15px rgba(3, 31, 35, 0.15);
 }
 @media (min-width: 768px) {
   header.jumbotron .container {
@@ -628,70 +642,18 @@ section:nth-child(odd) {
   background-color: #fafafa;
 }
 section:nth-child(even) {
-  background-color: #f5f5f5;
+  background-color: #031f23;
 }
-section h2 {
+section .title {
   position: relative;
-  width: 100%;
-  font-size: 0;
-  font-family: liana, script;
-  line-height: 1.75;
-  text-align: center;
 }
-section h2 span.ch {
-  position: relative;
-  display: table;
-  margin: auto;
-  color: #131313;
-  font-size: 48px;
-  font-weight: 100;
-}
-@media (min-width: 768px) {
-  section h2 span.ch {
-    font-size: 60px;
-  }
-}
-@media (min-width: 1024px) {
-  section h2 span.ch {
-    font-size: 72px;
-  }
-}
-section h2 span.en {
+section .title h2 {
   position: absolute;
-  display: block;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  padding: 0 5px;
-  font-size: 36px;
-  font-style: italic;
-  font-weight: bold;
-  color: transparent !important;
-  background-repeat: no-repeat;
-  -moz-background-clip: text;
-  -o-background-clip: text;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-image: url("../img/goldenBG@2x.png");
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
-@media (min-width: 768px) {
-  section h2 span.en {
-    font-size: 48px;
-  }
-}
-@media (min-width: 1024px) {
-  section h2 span.en {
-    font-size: 60px;
-  }
+  margin: 0;
+  font-size: 48px;
+  line-height: 1;
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
 }
 section.newlywed .background {
   position: relative;
@@ -720,9 +682,9 @@ section.newlywed .background::before, section.newlywed .background::after {
 }
 section.newlywed .background::before {
   background-image: url("../img/2-couple-dark@3x.jpg");
-  -moz-animation: bifade 10s alternate infinite ease-in-out;
-  -webkit-animation: bifade 10s alternate infinite ease-in-out;
-  animation: bifade 10s alternate infinite ease-in-out;
+  -moz-animation: bifade 5s alternate infinite ease-in-out;
+  -webkit-animation: bifade 5s alternate infinite ease-in-out;
+  animation: bifade 5s alternate infinite ease-in-out;
   z-index: 1;
 }
 @media (min-width: 768px) {
@@ -782,13 +744,152 @@ section.newlywed .text img {
 }
 section.newlywed .text h4 {
   margin-top: 1em;
-  color: #131313;
+  color: #031f23;
   font-weight: 200;
 }
 @media (min-width: 768px) {
   section.newlywed .text h4 {
     color: #fff;
   }
+}
+section.bigday {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+@media (min-width: 768px) {
+  section.bigday {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+section.bigday .date-time {
+  text-align: center;
+}
+section.bigday .date-time span {
+  color: #aaa;
+  font-size: 18px;
+  line-height: 1;
+}
+section.bigday .date-time span[class*='row'] {
+  display: inline-flex;
+  justify-content: center;
+  align-items: baseline;
+}
+section.bigday .date-time span.note {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+section.bigday .date-time span.number {
+  color: #D7B788;
+  font-size: 96px;
+  font-weight: 300;
+}
+section.bigday .date-time span i {
+  display: block;
+  align-self: center;
+  width: 2em;
+  padding: 5px;
+  font-style: normal;
+  line-height: 1.35;
+  word-break: break-all;
+}
+section.bigday .pre-text {
+  margin-top: 100px;
+  margin-bottom: 25px;
+  color: #ccc;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+}
+section.bigday ul.timer {
+  justify-content: center;
+  line-height: 1;
+}
+section.bigday ul.timer li {
+  position: relative;
+  padding: 0 30px;
+  color: #aaa;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+}
+section.bigday ul.timer li span {
+  display: block;
+  color: #D7B788;
+  font-size: 96px;
+  font-weight: 300;
+}
+section.bigday ul.timer li + li::before {
+  content: ':';
+  position: absolute;
+  top: -13px;
+  left: -10px;
+  color: #D7B788;
+  font-family: sans-serif;
+  font-size: 96px;
+  font-weight: 100;
+  line-height: 1;
+}
+section.story {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+@media (min-width: 768px) {
+  section.story {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+section.story ul {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+section.story ul::before {
+  position: absolute;
+  top: 0px;
+  left: 115px;
+  width: 1px;
+  height: 100%;
+  background-color: #D7B788;
+}
+section.story ul li {
+  position: relative;
+  padding-left: 145px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+}
+section.story ul li::before {
+  position: absolute;
+  top: 20px;
+  left: 111.5px;
+  width: 8px;
+  height: 8px;
+  background-color: #895A36;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+section.story ul li.txt-full {
+  padding: 10px 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-top: 1px solid #D7B788;
+  border-bottom: 1px solid #D7B788;
+  background-color: #fafafa;
+}
+section.story ul li.txt-full::before {
+  display: none;
+}
+section.story .day {
+  position: absolute;
+  left: 0px;
+  font-weight: 200;
+}
+section.story .txt {
+  font-weight: 400;
 }
 section.gallery {
   padding-top: 50px;
@@ -802,9 +903,9 @@ section.gallery {
 }
 section.gallery .lightgallery {
   font-size: 0;
-  -moz-column-count: 5;
-  -webkit-column-count: 5;
-  column-count: 5;
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  column-count: 3;
 }
 section.gallery .lightgallery a {
   display: initial;
@@ -827,17 +928,7 @@ section.map .text {
   }
 }
 section.map .text h4 {
-  color: transparent !important;
-  background-repeat: no-repeat;
-  -moz-background-clip: text;
-  -o-background-clip: text;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-image: url("../img/goldenBG@2x.png");
+  font-weight: 600;
 }
 section.map .text h4, section.map .text h5 {
   margin: 0.5em 0 0.25em;

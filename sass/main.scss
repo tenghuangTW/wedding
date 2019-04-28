@@ -509,7 +509,6 @@ section {
 					padding: 10px 30px;
 					margin-top: 20px;
 					margin-bottom: 20px;
-					text-align: center;
 					border-top: 1px solid $main;
 					border-bottom: 1px solid $main;
 					background-color: #fafafa;
@@ -539,14 +538,18 @@ section {
 			font-size: 0;
 			@include column-count(3);
 			a {
-				display: initial;
+				display: block;
 				padding: 5px;
 				img {
-					margin: 5px;
-					width: calc(100% - 10px);
+					width: 100%;
 					height: auto;
 				}
 			}
+		}
+		.continued {
+			padding-top: 50px;
+			color: $white;
+			font-size: 1.25em;
 		}
 	}
 	&.map {

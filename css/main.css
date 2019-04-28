@@ -875,7 +875,6 @@ section.story ul li.txt-full {
   padding: 10px 30px;
   margin-top: 20px;
   margin-bottom: 20px;
-  text-align: center;
   border-top: 1px solid #D7B788;
   border-bottom: 1px solid #D7B788;
   background-color: #fafafa;
@@ -908,13 +907,17 @@ section.gallery .lightgallery {
   column-count: 3;
 }
 section.gallery .lightgallery a {
-  display: initial;
+  display: block;
   padding: 5px;
 }
 section.gallery .lightgallery a img {
-  margin: 5px;
-  width: calc(100% - 10px);
+  width: 100%;
   height: auto;
+}
+section.gallery .continued {
+  padding-top: 50px;
+  color: #fff;
+  font-size: 1.25em;
 }
 section.map .text {
   display: flex;

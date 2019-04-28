@@ -99,11 +99,13 @@ header.jumbotron {
 	margin: 0;
 	padding: 0;
 	height: 100vh;
-	background-image: url('../img/background.png');
+	background-image: url('../img/background@2x.png');
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	@include background-size(cover);
+	@include breakpoint (768px) {
+		background-attachment: fixed;
+	}
 	> .container-fluid{
 		height: 100%;
 		> .flex {
@@ -306,13 +308,16 @@ section {
 	.title {
 		position: relative;
 		h2 {
-			position: absolute;
-			margin: 0;
+			margin: 0 0 1em;
 			font-size: 48px;
 			line-height: 1;
-			writing-mode: vertical-rl;
-			-webkit-writing-mode: vertical-rl;
 			@extend %golden-text;
+			@include breakpoint (768px) {
+				position: absolute;
+				margin: 0;
+				writing-mode: vertical-rl;
+				-webkit-writing-mode: vertical-rl;
+			}
 		}
 	}
 	&.newlywed {
@@ -536,7 +541,10 @@ section {
 		}
 		.lightgallery {
 			font-size: 0;
-			@include column-count(3);
+			@include column-count(2);
+			@include breakpoint(768px) {
+				@include column-count(3);
+			}
 			a {
 				display: block;
 				padding: 5px;

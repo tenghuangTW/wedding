@@ -413,14 +413,18 @@ header.jumbotron {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-image: url("../img/background.png");
+  background-image: url("../img/background@2x.png");
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover;
+}
+@media (min-width: 768px) {
+  header.jumbotron {
+    background-attachment: fixed;
+  }
 }
 header.jumbotron > .container-fluid {
   height: 100%;
@@ -648,12 +652,17 @@ section .title {
   position: relative;
 }
 section .title h2 {
-  position: absolute;
-  margin: 0;
+  margin: 0 0 1em;
   font-size: 48px;
   line-height: 1;
-  writing-mode: vertical-rl;
-  -webkit-writing-mode: vertical-rl;
+}
+@media (min-width: 768px) {
+  section .title h2 {
+    position: absolute;
+    margin: 0;
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+  }
 }
 section.newlywed .background {
   position: relative;
@@ -902,9 +911,16 @@ section.gallery {
 }
 section.gallery .lightgallery {
   font-size: 0;
-  -moz-column-count: 3;
-  -webkit-column-count: 3;
-  column-count: 3;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+}
+@media (min-width: 768px) {
+  section.gallery .lightgallery {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
 }
 section.gallery .lightgallery a {
   display: block;

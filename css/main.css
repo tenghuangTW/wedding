@@ -464,9 +464,6 @@ header.jumbotron .container .flex {
   justify-content: center;
   align-items: center;
 }
-header.jumbotron .container h1 {
-  padding-top: 4rem;
-}
 header.jumbotron .container h1 img {
   height: auto;
   max-width: calc(100% + 50px);
